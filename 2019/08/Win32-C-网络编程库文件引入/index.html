@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Win32 C++ 网络编程库文件引入 | spchenBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概述在Windows编程中，网络编程（Socket编程）需要添加头文件winsock.h。但仅仅是添加这个头文件是无法使用的 解决方法winsock.h包含在Windows.h中，而Windows编程一般都会添加Windows.h，所以不需要额外添加winsock.h，只需要有Windows.h即可。如以下代码所示 1#include &amp;lt;Windows.h&amp;gt; 但是只是引入这个头文件并不">
+<meta name="keywords" content="网络编程 | C++ | 解决方案">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Win32 C++ 网络编程库文件引入">
+<meta property="og:url" content="https://spchen164.github.io/2019/08/Win32-C-网络编程库文件引入/index.html">
+<meta property="og:site_name" content="spchenBlog">
+<meta property="og:description" content="概述在Windows编程中，网络编程（Socket编程）需要添加头文件winsock.h。但仅仅是添加这个头文件是无法使用的 解决方法winsock.h包含在Windows.h中，而Windows编程一般都会添加Windows.h，所以不需要额外添加winsock.h，只需要有Windows.h即可。如以下代码所示 1#include &amp;lt;Windows.h&amp;gt; 但是只是引入这个头文件并不">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/spchen164/blogSrc/blob/master/images/socket%E7%BC%96%E7%A8%8B%E6%8A%A5%E9%94%99.PNG?raw=true">
+<meta property="og:updated_time" content="2019-08-22T12:16:45.058Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Win32 C++ 网络编程库文件引入">
+<meta name="twitter:description" content="概述在Windows编程中，网络编程（Socket编程）需要添加头文件winsock.h。但仅仅是添加这个头文件是无法使用的 解决方法winsock.h包含在Windows.h中，而Windows编程一般都会添加Windows.h，所以不需要额外添加winsock.h，只需要有Windows.h即可。如以下代码所示 1#include &amp;lt;Windows.h&amp;gt; 但是只是引入这个头文件并不">
+<meta name="twitter:image" content="https://github.com/spchen164/blogSrc/blob/master/images/socket%E7%BC%96%E7%A8%8B%E6%8A%A5%E9%94%99.PNG?raw=true">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">spchen个人博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">分享自己的技术心得，更新纯粹看心情</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <a class="main-nav-link" href="https://github.com/spchen164" target="_blank">
+          github个人主页
+        </a>
+        <!-- <a id="nav-search-btn" class="nav-icon" title="搜索"></a> -->
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://spchen164.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Win32-C-网络编程库文件引入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/Win32-C-网络编程库文件引入/" class="article-date">
+  <time datetime="2019-08-22T09:05:09.000Z" itemprop="datePublished">2019-08-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Windows编程/">Windows编程</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Win32 C++ 网络编程库文件引入
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在Windows编程中，网络编程（Socket编程）需要添加头文件winsock.h。但仅仅是添加这个头文件是无法使用的</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p><strong>winsock.h</strong>包含在<strong>Windows.h</strong>中，而Windows编程一般都会添加<strong>Windows.h</strong>，所以不需要额外添加<strong>winsock.h</strong>，只需要有<strong>Windows.h</strong>即可。如以下代码所示</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Windows.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>但是只是引入这个头文件并不能成功编译<br><img src="https://github.com/spchen164/blogSrc/blob/master/images/socket%E7%BC%96%E7%A8%8B%E6%8A%A5%E9%94%99.PNG?raw=true" alt="不引入库文件导致socket编程报错"></p>
+<p>产生这个现象的原因个人猜测是因为<strong>winsock.h</strong>的内部只是函数声明，并不包括函数的实现，因此才会出现没有找到定义的错误。所以我们需要其它有对应函数实现的文件，即它的库文件<strong>ws2_32.lib</strong>。库文件导入代码如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib,<span class="meta-string">"ws2_32.lib"</span>)</span></span><br></pre></td></tr></table></figure>
+<p>这样就可以正常地编译运行程序了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://spchen164.github.io/2019/08/Win32-C-网络编程库文件引入/" data-id="cjzmmwtpo0000kcukbnhgu11m" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络编程-C-解决方案/">网络编程 | C++ | 解决方案</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Windows编程/">Windows编程</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络编程-C-解决方案/">网络编程 | C++ | 解决方案</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/网络编程-C-解决方案/" style="font-size: 10px;">网络编程 | C++ | 解决方案</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/Win32-C-网络编程库文件引入/">Win32 C++ 网络编程库文件引入</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 spchen<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/archives" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
